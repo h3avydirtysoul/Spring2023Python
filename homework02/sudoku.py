@@ -107,19 +107,51 @@ def get_block(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -> tp.List[s
     ['2', '8', '.', '.', '.', '5', '.', '7', '9']
     """
     a = []
-
-    if (pos[0] <= 2 and pos[1] <= 2):
-        a.append(grid[0][0])
-        a.append(grid[0][1])
-        a.append(grid[0][2])
-        a.append(grid[1][0])
-        a.append(grid[1][1])
-        a.append(grid[1][2])
-        a.append(grid[2][0])
-        a.append(grid[2][1])
-        a.append(grid[2][2])
-
-
+    for i in range(0, 3, 1):
+        if (pos[0] <= 2 and pos[1] <= 2):
+            a.append(grid[i][0])
+            a.append(grid[i][1])
+            a.append(grid[i][2])
+    for i in range(3, 6, 1):
+        if (3 <= pos[0] <= 5 and pos[1] <= 2):
+            a.append(grid[i][0])
+            a.append(grid[i][1])
+            a.append(grid[i][2])
+    for i in range(6, 9, 1):
+        if (6 <= pos[0] <= 8 and pos[1] <= 2):
+            a.append(grid[i][0])
+            a.append(grid[i][1])
+            a.append(grid[i][2])
+    for i in range(0, 3, 1):
+        if (pos[0] <= 2 and 3 <= pos[1] <= 5):
+            a.append(grid[i][3])
+            a.append(grid[i][4])
+            a.append(grid[i][5])
+    for i in range(3, 6, 1):
+        if (3 <= pos[0] <= 5 and 3 <= pos[1] <= 5):
+            a.append(grid[i][3])
+            a.append(grid[i][4])
+            a.append(grid[i][5])
+    for i in range(6, 9, 1):
+        if (6 <= pos[0] <= 8 and 3 <= pos[1] <= 5):
+            a.append(grid[i][3])
+            a.append(grid[i][4])
+            a.append(grid[i][5])
+    for i in range(0, 3, 1):
+        if (pos[0] <= 2 and 6 <= pos[1] <= 8):
+            a.append(grid[i][6])
+            a.append(grid[i][7])
+            a.append(grid[i][8])
+    for i in range(3, 6, 1):
+        if (3 <= pos[0] <= 5 and 6 <= pos[1] <= 8):
+            a.append(grid[i][6])
+            a.append(grid[i][7])
+            a.append(grid[i][8])
+    for i in range(6, 9, 1):
+        if (6 <= pos[0] <= 8 and 6 <= pos[1] <= 8):
+            a.append(grid[i][6])
+            a.append(grid[i][7])
+            a.append(grid[i][8])
     return a
     pass
 
