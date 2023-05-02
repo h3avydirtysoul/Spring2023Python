@@ -61,15 +61,7 @@ def get_row(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -> tp.List[str
     >>> get_row([['1', '2', '3'], ['4', '5', '6'], ['.', '8', '9']], (2, 0))
     ['.', '8', '9']
     """
-    a = []
-    for i in range(2):
-        if (pos[0] == 0):
-            a = grid[0]
-        if (pos[0] == 1):
-            a = grid[1]
-        if (pos[0] == 2):
-            a = grid[2]
-    return a
+    return grid[pos[0]]
     pass
 
 
@@ -84,13 +76,8 @@ def get_col(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -> tp.List[str
     ['3', '6', '9']
     """
     a = []
-    for i in range(3):
-        if (pos[1] == 0):
-            a.append(grid[i][0])
-        if (pos[1] == 1):
-            a.append(grid[i][1])
-        if (pos[1] == 2):
-            a.append(grid[i][2])
+    for i in range(len(grid)):
+        a.append(grid[i][pos[1]])
     return a
     pass
 
@@ -185,6 +172,13 @@ def find_possible_values(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -
     >>> values == {'2', '5', '9'}
     True
     """
+    posb_values = set('123456789')
+    row_values = set(get_row(grid, pos))
+    col_values = set(get_col(grid, pos))
+    block_values = set(get_block(grid, pos))
+    result = posb_values - row_values - col_values - block_values
+
+    return result
     pass
 
 
