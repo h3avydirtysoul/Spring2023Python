@@ -37,11 +37,17 @@ def group(values: tp.List[T], n: int) -> tp.List[tp.List[T]]:
     """
     Сгруппировать значения values в список, состоящий из списков по n элементов
 
+
+
     >>> group([1,2,3,4], 2)
     [[1, 2], [3, 4]]
     >>> group([1,2,3,4,5,6,7,8,9], 3)
     [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
     """
+    b = []
+    for i in range(n):
+        b.append(values[i * n:(i + 1) * n])
+    return b
     pass
 
 
@@ -55,6 +61,15 @@ def get_row(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -> tp.List[str
     >>> get_row([['1', '2', '3'], ['4', '5', '6'], ['.', '8', '9']], (2, 0))
     ['.', '8', '9']
     """
+    a = []
+    for i in range(2):
+        if (pos[0] == 0):
+            a = grid[0]
+        if (pos[0] == 1):
+            a = grid[1]
+        if (pos[0] == 2):
+            a = grid[2]
+    return a
     pass
 
 
@@ -68,6 +83,15 @@ def get_col(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -> tp.List[str
     >>> get_col([['1', '2', '3'], ['4', '5', '6'], ['.', '8', '9']], (0, 2))
     ['3', '6', '9']
     """
+    a = []
+    for i in range(3):
+        if (pos[1] == 0):
+            a.append(grid[i][0])
+        if (pos[1] == 1):
+            a.append(grid[i][1])
+        if (pos[1] == 2):
+            a.append(grid[i][2])
+    return a
     pass
 
 
@@ -82,6 +106,7 @@ def get_block(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -> tp.List[s
     >>> get_block(grid, (8, 8))
     ['2', '8', '.', '.', '.', '5', '.', '7', '9']
     """
+
     pass
 
 
