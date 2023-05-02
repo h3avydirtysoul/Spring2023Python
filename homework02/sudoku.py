@@ -106,7 +106,21 @@ def get_block(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -> tp.List[s
     >>> get_block(grid, (8, 8))
     ['2', '8', '.', '.', '.', '5', '.', '7', '9']
     """
+    a = []
 
+    if (pos[0] <= 2 and pos[1] <= 2):
+        a.append(grid[0][0])
+        a.append(grid[0][1])
+        a.append(grid[0][2])
+        a.append(grid[1][0])
+        a.append(grid[1][1])
+        a.append(grid[1][2])
+        a.append(grid[2][0])
+        a.append(grid[2][1])
+        a.append(grid[2][2])
+
+
+    return a
     pass
 
 
