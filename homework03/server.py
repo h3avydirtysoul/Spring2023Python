@@ -1,4 +1,6 @@
 import time
+import requests
+import json
 
 from flask import Flask, request, abort
 
@@ -7,14 +9,9 @@ app = Flask(__name__)
 db = [
     {
         'time': time.time(),
-        'name': 'Timur',
-        'text': 'Привет!',
+        'name': 'Тимур',
+        'text': 'Привет! Меня зовут Тимур, я владелец этого чата! Очень рад видеть тебя здесь. Если хочешь получить анекдот(на английском), напиши /anecdote',
     },
-    {
-        'time': time.time(),
-        'name': 'Mary',
-        'text': 'Привет! Как дела?',
-    }
 ]
 
 @app.route("/")
@@ -23,10 +20,17 @@ def hello():
 
 @app.route("/status")
 def status():
+    users = []
+    for message in db:
+        if message['name'] not in users:
+            users.append(message['name'])
     return {
-        'status': True,
         'name': 'Messenger',
+        'status': True,
         'time': time.asctime(),
+        'Number of messages': len(db),
+        'Number of users': len(users),
+        'Users': users
     }
 
 @app.route("/send", methods=['POST'])
@@ -43,12 +47,21 @@ def send_message():
     if not isinstance(name, str) or not isinstance(text, str) or name == '' or text == '':
         return abort(400)
 
+    if text == '/anecdote':
+        response = requests.get("https://official-joke-api.appspot.com/random_joke")
+        joke = json.loads(response.content)
 
-    message = {
-        'time': time.time(),
-        'name': name,
-        'text': text,
-    }
+        message = {
+            'time': time.time(),
+            'name': 'Bot',
+            'text': f"{joke['setup']} {joke['punchline']}",
+        }
+    else:
+        message = {
+            'time': time.time(),
+            'name': name,
+            'text': text,
+        }
     db.append(message)
     return {'ok': True}
 
