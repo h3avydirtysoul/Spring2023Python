@@ -47,6 +47,7 @@ def send_message():
     if not isinstance(name, str) or not isinstance(text, str) or name == '' or text == '':
         return abort(400)
 
+#   Шутки на английском языке! Чтобы их перевести, нужен API ключ, с этим я не стал разбираться
     if text == '/anecdote':
         response = requests.get("https://official-joke-api.appspot.com/random_joke")
         joke = json.loads(response.content)
